@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class MainScreenViewController: UIViewController {
   
@@ -89,27 +90,24 @@ private extension MainScreenViewController {
 private extension MainScreenViewController {
   func setupTableView() {
     view.addSubview(tableView)
-    tableView.translatesAutoresizingMaskIntoConstraints = false
     tableView.register(QuoteCard.Cell.self, forCellReuseIdentifier: Constants.cellIdentifier)
     tableView.dataSource = self
     tableView.delegate = self
+    tableView.estimatedRowHeight = UITableView.automaticDimension
+    tableView.rowHeight = Constants.rowHeight
     
-    NSLayoutConstraint.activate([
-      tableView.topAnchor.constraint(equalTo: view.topAnchor),
-      tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-      tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-      tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-    ])
+    tableView.snp.makeConstraints { make in
+      make.edges.equalToSuperview()
+    }
   }
   
   func setupActivityIndicator() {
     view.addSubview(activityIndicator)
-    activityIndicator.translatesAutoresizingMaskIntoConstraints = false
     activityIndicator.hidesWhenStopped = true
-    NSLayoutConstraint.activate([
-      activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-      activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-    ])
+    
+    activityIndicator.snp.makeConstraints { make in
+      make.center.equalToSuperview()
+    }
   }
   
   func startQuoteService(tickers: [String]) {
@@ -271,6 +269,7 @@ private extension MainScreenViewController {
 // MARK: - Constants
 
 private enum Constants {
+  static let rowHeight: CGFloat = 68
   static let quoteType = "stocks"
   static let quoteExchange = "russia"
   static let quoteLimit = 30

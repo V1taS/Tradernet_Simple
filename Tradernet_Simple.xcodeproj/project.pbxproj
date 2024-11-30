@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B25C8452CF0FC40007FDF1B /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 1B25C8442CF0FC40007FDF1B /* Starscream */; };
+		1BBDAA6F2CFB276900C43905 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBDAA6E2CFB276900C43905 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B25C8452CF0FC40007FDF1B /* Starscream in Frameworks */,
+				1BBDAA6F2CFB276900C43905 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +86,7 @@
 			name = Tradernet_Simple;
 			packageProductDependencies = (
 				1B25C8442CF0FC40007FDF1B /* Starscream */,
+				1BBDAA6E2CFB276900C43905 /* SnapKit */,
 			);
 			productName = Tradernet_Simple;
 			productReference = 1B25C8252CF0F65E007FDF1B /* Tradernet_Simple.app */;
@@ -115,6 +118,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				1B25C8432CF0FC40007FDF1B /* XCRemoteSwiftPackageReference "Starscream" */,
+				1BBDAA6D2CFB276900C43905 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 1B25C8262CF0F65E007FDF1B /* Products */;
@@ -354,6 +358,14 @@
 				version = 4.0.8;
 			};
 		};
+		1BBDAA6D2CFB276900C43905 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = exactVersion;
+				version = 5.7.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -361,6 +373,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1B25C8432CF0FC40007FDF1B /* XCRemoteSwiftPackageReference "Starscream" */;
 			productName = Starscream;
+		};
+		1BBDAA6E2CFB276900C43905 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BBDAA6D2CFB276900C43905 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

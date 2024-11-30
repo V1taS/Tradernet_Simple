@@ -14,16 +14,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
   // MARK: - Internal properties
   
   var window: UIWindow?
-  
-  // MARK: - Private properties
-  
+
   // MARK: - Internal func
   
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
-    
     setupWindowForPreiOS13()
     return true
   }

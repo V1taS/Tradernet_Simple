@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 /// Этот файл содержит реализацию компонентов для отображения карточек котировок.
 ///
@@ -58,20 +59,18 @@ extension QuoteCard {
       imageView.contentMode = .scaleAspectFit
       imageView.image = UIImage(named: "chevron-right")?.withRenderingMode(.alwaysTemplate)
       imageView.tintColor = #colorLiteral(red: 0.7647058964, green: 0.764705956, blue: 0.7647058964, alpha: 1)
-      NSLayoutConstraint.activate([
-        imageView.widthAnchor.constraint(equalToConstant: 16),
-        imageView.heightAnchor.constraint(equalToConstant: 16)
-      ])
+      imageView.snp.makeConstraints { make in
+        make.width.lessThanOrEqualTo(16)
+      }
       return imageView
     }()
     
     private let leftSideImageView: UIImageView = {
       let imageView = UIImageView()
       imageView.contentMode = .scaleAspectFit
-      NSLayoutConstraint.activate([
-        imageView.widthAnchor.constraint(equalToConstant: 24),
-        imageView.heightAnchor.constraint(equalToConstant: 24)
-      ])
+      imageView.snp.makeConstraints { make in
+        make.width.lessThanOrEqualTo(24)
+      }
       return imageView
     }()
     
@@ -141,36 +140,40 @@ extension QuoteCard {
         textColor: rightSideTitleStyle.textColor,
         gradientColors: rightSideTitleStyle.backgroundBubbleColor
       )
+      
+      setNeedsLayout()
     }
     
     // MARK: - Private
     
     private func configureLayout() {
       contentView.addSubview(mainHorizontalStackView)
-      mainHorizontalStackView.translatesAutoresizingMaskIntoConstraints = false
       
+      // Добавляем подстэки в основной вертикальный стэк
       mainVerticalStackView.addArrangedSubview(firstLineHorizontalStackView)
       mainVerticalStackView.addArrangedSubview(secondLineHorizontalStackView)
       
+      // Добавляем вертикальный стэк и правый imageView в основной горизонтальный стэк
       mainHorizontalStackView.addArrangedSubview(mainVerticalStackView)
       mainHorizontalStackView.addArrangedSubview(rightSideImageView)
       
+      // Заполняем первый горизонтальный стэк
       firstLineHorizontalStackView.addArrangedSubview(leftSideImageView)
       firstLineHorizontalStackView.addArrangedSubview(leftSideTitleLabel)
       firstLineHorizontalStackView.addArrangedSubview(UIView())
       firstLineHorizontalStackView.addArrangedSubview(rightSideTitleLabel)
       
+      // Заполняем второй горизонтальный стэк
       secondLineHorizontalStackView.addArrangedSubview(leftSideDescriptionLabel)
       secondLineHorizontalStackView.addArrangedSubview(UIView())
       secondLineHorizontalStackView.addArrangedSubview(rightSideDescriptionLabel)
       
-      NSLayoutConstraint.activate([
-        mainHorizontalStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-        mainHorizontalStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
-        mainHorizontalStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-        mainHorizontalStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8),
-        contentView.heightAnchor.constraint(equalToConstant: 68)
-      ])
+      mainHorizontalStackView.snp.makeConstraints { make in
+        make.leading.equalToSuperview().offset(16)
+        make.top.equalToSuperview().offset(8)
+        make.trailing.equalToSuperview().inset(8)
+        make.bottom.equalToSuperview().inset(8)
+      }
     }
     
     private func applyDefaultBehavior() {
@@ -247,14 +250,13 @@ extension QuoteCard {
     
     private func configureLayout() {
       addSubview(titleLabel)
-      titleLabel.translatesAutoresizingMaskIntoConstraints = false
       
-      NSLayoutConstraint.activate([
-        titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: contentInsets.left),
-        titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: contentInsets.top),
-        titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -contentInsets.right),
-        titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -contentInsets.bottom)
-      ])
+      titleLabel.snp.makeConstraints { make in
+        make.leading.equalToSuperview().offset(contentInsets.left)
+        make.top.equalToSuperview().offset(contentInsets.top)
+        make.trailing.equalToSuperview().inset(contentInsets.right)
+        make.bottom.equalToSuperview().inset(contentInsets.bottom)
+      }
     }
     
     private func applyDefaultBehavior() {
